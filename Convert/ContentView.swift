@@ -8,9 +8,16 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State private var userInput: Double = 0
     var body: some View {
-        Text("Hello, world!")
-            .padding()
+        NavigationView {
+            Form {
+                Section {
+                    TextField("Enter your unit here", value: $userInput, format: .number)
+                }
+            }
+        }
+        .navigationTitle("Convert")
     }
 }
 

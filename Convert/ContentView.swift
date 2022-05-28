@@ -13,11 +13,27 @@ struct ContentView: View {
     @State private var userInput: Double = 0
     @State private var conversionUnit = "Celcius to Farenheit"
     
+    var convertedUnit: Double{
+        if conversionUnit == "Celcius to Farenheit" {
+            let convertedUnit = (userInput * 1.8) + 32
+            return convertedUnit
+        } else if conversionUnit == "Liters to Pints" {
+            let convertedUnit = userInput * 2.11338
+            return convertedUnit
+        } else if conversionUnit == "Meters to Feet" {
+            let convertedUnit = userInput * 3.28084
+            return convertedUnit
+        }
+        return self.convertedUnit
+    }
+    
     var body: some View {
         NavigationView {
             Form {
                 Section {
                     TextField("Enter your unit here", value: $userInput, format: .number)
+                } header: {
+                    Text("Enter your unit here")
                 }
                 
                 Section {
@@ -29,7 +45,7 @@ struct ContentView: View {
                 }
                 
                 Section {
-                    Text("Placeholder", format: .number)
+                    Text(convertedUnit, format: .number)
                 } header: {
                      Text("Converted unit")
                 }

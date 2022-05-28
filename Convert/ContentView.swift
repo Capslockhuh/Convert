@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct ContentView: View {
+    @FocusState private var keyboardIsFocused: Bool
+    
     let conversionUnits = ["Celcius to Farenheit", "Liters to Pints", "Meters to Feet"]
     
     @State private var userInput: Double = 0
@@ -32,6 +34,8 @@ struct ContentView: View {
             Form {
                 Section {
                     TextField("Enter your unit here", value: $userInput, format: .number)
+                        .keyboardType(.decimalPad)
+                        .focused($keyboardIsFocused)
                 } header: {
                     Text("Enter your unit here")
                 }
@@ -51,6 +55,15 @@ struct ContentView: View {
                 }
             }
             .navigationTitle("Convert")
+            .toolbar {
+                ToolbarItemGroup(placement: .keyboard) {
+                    Spacer()
+                    
+                    Button("Done") {
+                        keyboardIsFocused = false
+                    }
+                }
+            }
         }
     }
 }
@@ -60,3 +73,4 @@ struct ContentView_Previews: PreviewProvider {
         ContentView()
     }
 }
+// TODO: fix picker so it shows the checkmark

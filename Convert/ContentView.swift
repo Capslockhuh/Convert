@@ -13,16 +13,16 @@ struct ContentView: View {
     let conversionUnits = ["Celcius to Farenheit", "Liters to Pints", "Meters to Feet"]
     
     @State private var userInput: Double = 0
-    @State private var conversionUnit = "Celcius to Farenheit"
+    @State private var conversionUnit = 0
     
-    var convertedUnit: Double{
-        if conversionUnit == "Celcius to Farenheit" {
+    var convertedUnit: Double {
+        if conversionUnit == 0 {
             let convertedUnit = (userInput * 1.8) + 32
             return convertedUnit
-        } else if conversionUnit == "Liters to Pints" {
+        } else if conversionUnit == 1 {
             let convertedUnit = userInput * 2.11338
             return convertedUnit
-        } else if conversionUnit == "Meters to Feet" {
+        } else if conversionUnit == 2 {
             let convertedUnit = userInput * 3.28084
             return convertedUnit
         }
@@ -42,7 +42,7 @@ struct ContentView: View {
                 
                 Section {
                     Picker("Unit Conversion", selection: $conversionUnit) {
-                        ForEach(0..<3) {
+                        ForEach(0..<conversionUnits.count) {
                             Text(conversionUnits[$0])
                         }
                     }
@@ -73,4 +73,4 @@ struct ContentView_Previews: PreviewProvider {
         ContentView()
     }
 }
-// TODO: fix picker so it shows the checkmark
+// TODO: fix picker

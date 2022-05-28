@@ -73,4 +73,3 @@ struct ContentView_Previews: PreviewProvider {
         ContentView()
     }
 }
-// TODO: fix picker
